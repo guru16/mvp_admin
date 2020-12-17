@@ -47,9 +47,13 @@ export class LoginComponent implements OnInit {
      this.commonService.post('adminLogin',body).subscribe((data: any)=>{
        console.log(data)
       if(data.status==200){
-        alert(JSON.stringify(data))
+
 
        let token=data.token;
+       localStorage.setItem('firstName',data.data.firstName);
+       localStorage.setItem('lastName',data.data.lastName);
+
+
        localStorage.setItem('token',token);
       this._router.navigate(["dashboard"]);
       }else{
